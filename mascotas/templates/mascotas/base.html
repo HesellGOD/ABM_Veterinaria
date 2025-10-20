@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Veterinaria{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+</head>
+<body>
+    <header><h1>🐾 Veterinaria CRUD</h1></header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>
