@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="dueño-form-card mx-auto shadow-lg rounded-4 overflow-hidden">
+    <div class="row g-0">
+      <!-- Imagen lateral -->
+      <div class="col-md-5 d-none d-md-block">
+        <div class="dueño-form-image h-100" style="background-image: url('{% static 'img/pupassure-bg.jpg' %}');"></div>
+      </div>
+
+      <!-- Formulario -->
+      <div class="col-md-7 bg-white p-5">
+        <h2 class="mb-4 text-primary fw-bold">{{ modo }} Dueño</h2>
+        <form method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+          {% csrf_token %}
+          
+          <!-- NOMBRE COMPLETO -->
+          <div class="mb-3">
+            <label for="nombre" class="form-label fw-semibold text-secondary">Nombre Completo</label>
+            <input type="text" id="nombre" name="nombre" class="form-control rounded-3 py-2" placeholder="Ej: Juan Pérez" required>
+          </div>
+
+          <!-- DNI -->
+          <div class="mb-3">
+            <label for="dni" class="form-label fw-semibold text-secondary">DNI</label>
+            <input type="text" id="dni" name="dni" class="form-control rounded-3 py-2" placeholder="Ej: 36.789.123" required>
+          </div>
+
+          <!-- TELÉFONO -->
+          <div class="mb-3">
+            <label for="telefono" class="form-label fw-semibold text-secondary">Teléfono</label>
+            <input type="text" id="telefono" name="telefono" class="form-control rounded-3 py-2" placeholder="Ej: 351-4567890">
+          </div>
+
+          <!-- EMAIL -->
+          <div class="mb-3">
+            <label for="email" class="form-label fw-semibold text-secondary">Email</label>
+            <input type="email" id="email" name="email" class="form-control rounded-3 py-2" placeholder="Ej: juanperez@example.com">
+          </div>
+
+          <!-- DIRECCIÓN -->
+          <div class="mb-4">
+            <label for="direccion" class="form-label fw-semibold text-secondary">Dirección</label>
+            <input type="text" id="direccion" name="direccion" class="form-control rounded-3 py-2" placeholder="Ej: Calle Falsa 123">
+          </div>
+
+          <!-- BOTONES -->
+          <div class="d-flex justify-content-end">
+            <a href="{% url 'dueño_list' %}" class="btn btn-outline-secondary me-2 rounded-pill px-4">Cancelar</a>
+            <button type="submit" class="btn btn-primary rounded-pill px-4">{{ modo }}</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

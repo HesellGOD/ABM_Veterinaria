@@ -1,0 +1,702 @@
+/* style.css
+   VetCare - estilo base (neumórfico oscuro, paleta violeta)
+   Asegurate de colocar este archivo en static/css/style.css y servir static en Django.
+*/
+
+/* -------------------------
+   Variables de color y base
+   ------------------------- */
+:root{
+  --bg-dark: #121212;            /* Fondo general */
+  --panel-dark: #1E1E2F;         /* Paneles y sidebar */
+  --muted: #B7B7C7;              /* texto secundario */
+  --white: #FFFFFF;
+  --primary: #6C63FF;            /* violeta principal */
+  --primary-2: #A393FF;          /* violeta secundario */
+  --accent: #7FD3FF;             /* celeste suave para cards opcional */
+  --card-radius: 12px;
+  --soft-shadow: 10px 10px 30px rgba(0,0,0,0.6);
+  --inset-shadow: inset 6px 6px 16px rgba(0,0,0,0.6);
+  --blur-shadow: 0 6px 18px rgba(0,0,0,0.6);
+}
+
+/* Tipografía base */
+*{ box-sizing: border-box; }
+html,body{
+  height:100%;
+  background: var(--bg-dark);
+  font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color: var(--white);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  margin:0;
+}
+
+/* Root app layout */
+.app-root{
+  min-height:100vh;
+}
+
+/* -------------------------
+   SIDEBAR
+   ------------------------- */
+.sidebar{
+  width: 260px;
+  min-height: 100vh;
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));
+  backdrop-filter: blur(6px);
+  border-right: 1px solid rgba(255,255,255,0.02);
+  padding-top: 28px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  box-shadow: var(--soft-shadow);
+}
+
+/* Neumorphism panel look */
+.sidebar, .stat-card, .card-section, .hero{
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));
+  border-radius: var(--card-radius);
+  box-shadow: var(--inset-shadow), 0 6px 18px rgba(0,0,0,0.6);
+}
+
+/* Logo */
+.logo .brand-icon{
+  width:54px;
+  height:54px;
+  background: linear-gradient(145deg, rgba(108,99,255,0.14), rgba(163,147,255,0.08));
+  border-radius: 12px;
+  font-size: 20px;
+  color: var(--white);
+}
+.logo h4{ font-weight:600; margin:0; letter-spacing:0.2px; }
+.logo small{ color:var(--muted); }
+
+/* Sidebar nav */
+.sidebar-nav .nav-link{
+  color: rgba(255,255,255,0.82);
+  padding: 12px 14px;
+  transition: all 220ms ease;
+  font-weight:500;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.sidebar-nav .nav-link i{ font-size:18px; opacity:0.95; }
+
+/* Active item style (violet background + white text) */
+.sidebar-nav .nav-link.active{
+  background: linear-gradient(90deg, rgba(108,99,255,0.18), rgba(163,147,255,0.08));
+  color: var(--white);
+  box-shadow: 0 6px 18px rgba(108,99,255,0.08);
+}
+
+/* Hover */
+.sidebar-nav .nav-link:hover{
+  transform: translateX(4px);
+  color: var(--white);
+}
+
+/* Sidebar footer */
+.sidebar-footer{ margin-top:auto; color:var(--muted); padding-bottom:18px; }
+
+/* -------------------------
+   TOPBAR
+   ------------------------- */
+.topbar{
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  background: transparent;
+  height:72px;
+  align-items:center;
+}
+
+/* Search box */
+.search-box{
+  background: rgba(255,255,255,0.02);
+  padding:6px 10px;
+  border-radius: 999px;
+  min-width:220px;
+  box-shadow: var(--inset-shadow);
+}
+.search-box input::placeholder{ color: rgba(255,255,255,0.5); }
+
+/* Notification badge */
+.btn-ghost{
+  background: transparent;
+  border: none;
+  color: var(--white);
+  position: relative;
+}
+.badge-notify{
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: #FF6B6B;
+  color: #fff;
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 999px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+}
+
+/* -------------------------
+   PAGE / HERO
+   ------------------------- */
+.page{ max-width: 1200px; margin-left: auto; margin-right: auto; }
+
+/* Hero/banner */
+.hero{
+  background: linear-gradient(90deg, rgba(108,99,255,0.18), rgba(108,99,255,0.10));
+  border-radius: 16px;
+  padding: 28px;
+  color: var(--white);
+  box-shadow: 0 10px 30px rgba(108,99,255,0.06);
+}
+.hero-title{ font-size: 28px; font-weight:700; margin-bottom:6px; }
+.hero-subtitle{ color: rgba(255,255,255,0.9); margin-bottom:12px; }
+
+/* Hero illustration */
+.hero-illustration svg{ filter: drop-shadow(0 12px 30px rgba(108,99,255,0.08)); }
+
+/* Buttons */
+.btn-primary{
+  background: var(--primary);
+  border-color: transparent;
+  box-shadow: 0 8px 20px rgba(108,99,255,0.14);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.btn-primary:hover{ transform: translateY(-3px); box-shadow: 0 18px 40px rgba(108,99,255,0.18); }
+.btn-outline-light{ border-color: rgba(255,255,255,0.08); color:var(--white); }
+
+/* -------------------------
+   STAT CARDS
+   ------------------------- */
+.stat-card{
+  min-height: 96px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:18px;
+  color: var(--white);
+}
+
+/* Each stat-icon use subtle background color variants */
+.stat-card:nth-child(1) .stat-icon{
+  background: linear-gradient(145deg, rgba(163,147,255,0.14), rgba(108,99,255,0.12));
+  color: var(--white);
+  width:56px; height:56px;
+  font-size:20px;
+}
+.stat-card:nth-child(2) .stat-icon{
+  background: linear-gradient(145deg, rgba(127,211,255,0.12), rgba(108,163,255,0.06));
+  color: var(--white);
+  width:56px; height:56px;
+  font-size:20px;
+}
+.stat-card:nth-child(3) .stat-icon{
+  background: linear-gradient(145deg, rgba(163,147,255,0.08), rgba(108,99,255,0.06));
+  color: var(--white);
+  width:56px; height:56px;
+  font-size:20px;
+}
+
+.stat-title{ color: rgba(255,255,255,0.85); font-weight:500; font-size:13px; }
+.stat-number{ font-size:24px; font-weight:700; }
+
+/* -------------------------
+   TABLE / TIMELINE
+   ------------------------- */
+.card-section{
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));
+  padding:18px;
+}
+
+/* Table styling */
+.table-dark tbody tr td{
+  border-top: 1px solid rgba(255,255,255,0.02);
+  padding: 14px 12px;
+  color: rgba(255,255,255,0.95);
+}
+.table thead th{ border-bottom: none; }
+
+/* Badges (estado) */
+.badge{
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-weight:600;
+  font-size: 12px;
+}
+
+/* State colors */
+.badge.state.pending{
+  background: rgba(255,193,7,0.12);
+  color: #FFC107;
+  border: 1px solid rgba(255,193,7,0.12);
+}
+.badge.state.confirmed{
+  background: rgba(108,99,255,0.12);
+  color: var(--primary);
+  border: 1px solid rgba(108,99,255,0.08);
+}
+.badge.state.completed{
+  background: rgba(76,175,80,0.08);
+  color: #4CAF50;
+  border: 1px solid rgba(76,175,80,0.06);
+}
+
+/* -------------------------
+   Responsive tweaks
+   ------------------------- */
+@media (max-width: 992px){
+  .sidebar{ width: 220px; }
+  .hero-title{ font-size:24px; }
+}
+
+@media (max-width: 768px){
+  .sidebar{ display:none; } /* para tablet/phones ocultamos sidebar (después se puede implementar comportamiento responsive) */
+  .topbar{ padding-left:14px; padding-right:14px; }
+  .page{ padding: 12px; }
+  .search-box{ min-width: 120px; }
+}
+
+/* Utilities */
+.rounded-12{ border-radius: 12px; }
+.rounded-16{ border-radius: 16px; }
+
+/* -----------------------------------
+   DUEÑO LIST (tabla de clientes)
+   ----------------------------------- */
+
+/* Página títulos */
+.page-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--white);
+}
+
+/* Mini cards */
+.mini-card {
+  background: linear-gradient(145deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  box-shadow: var(--inset-shadow), var(--blur-shadow);
+  color: var(--white);
+  transition: all 0.2s ease;
+}
+.mini-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(108,99,255,0.15);
+}
+
+/* Tabla de dueños */
+.table-dark tbody tr:hover {
+  background-color: rgba(108,99,255,0.06);
+}
+
+/* Botones CRUD */
+.btn-outline-light {
+  border: 1px solid rgba(255,255,255,0.1);
+  color: var(--white);
+}
+.btn-outline-light:hover {
+  background-color: var(--primary);
+  color: var(--white);
+}
+.btn-outline-danger {
+  border: 1px solid rgba(255,255,255,0.1);
+  color: #ff6b6b;
+}
+.btn-outline-danger:hover {
+  background-color: #ff6b6b;
+  color: #fff;
+}
+
+/* -----------------------------------
+   LISTA DE MASCOTAS (CRUD TABLA LIMPIA)
+   ----------------------------------- */
+
+.table {
+  border-collapse: separate;
+  border-spacing: 0 0.5rem;
+}
+
+.table thead th {
+  background-color: #f8f9fa !important;
+  border: none;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+.table tbody tr {
+  transition: all 0.2s ease-in-out;
+  border-radius: 10px;
+}
+.table tbody tr:hover {
+  background-color: #f3f4ff !important;
+  transform: scale(1.01);
+}
+
+/* Botones suaves tipo pastel */
+.btn-warning-soft {
+  background-color: rgba(255, 193, 7, 0.15);
+  border: none;
+}
+.btn-warning-soft:hover {
+  background-color: rgba(255, 193, 7, 0.25);
+}
+
+.btn-danger-soft {
+  background-color: rgba(220, 53, 69, 0.15);
+  border: none;
+}
+.btn-danger-soft:hover {
+  background-color: rgba(220, 53, 69, 0.25);
+}
+
+/* Campos y búsqueda */
+.input-group input {
+  font-size: 0.95rem;
+  color: #333;
+}
+.input-group .input-group-text {
+  border-right: none;
+}
+.input-group input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+/* ===========================
+   SECCIÓN: LISTA DE VISITAS
+=========================== */
+.table {
+  border-collapse: separate;
+  border-spacing: 0 0.6rem;
+}
+
+.table thead th {
+  border: none;
+  background-color: #1f1f2f;
+  color: #cfcfff;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+.table tbody tr {
+  background-color: #24243a;
+  transition: all 0.3s ease;
+}
+
+.table tbody tr:hover {
+  background-color: #2e2e48;
+  transform: scale(1.01);
+}
+
+.table td, .table th {
+  border: none;
+  vertical-align: middle;
+}
+
+.btn-outline-info, .btn-outline-warning, .btn-outline-danger {
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.visita-row {
+  border-radius: 10px;
+}
+
+.badge {
+  font-size: 0.85rem;
+  border-radius: 8px;
+}
+
+/* -----------------------------------
+   FORMULARIO DE DUEÑO (estilo Pupassure)
+   ----------------------------------- */
+
+.dueno-form-card {
+  max-width: 900px;
+  background-color: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+/* Imagen lateral */
+.dueno-form-image {
+  background-size: cover;
+  background-position: center;
+}
+
+/* Títulos */
+.dueno-form-card h2 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+
+/* Inputs */
+.form-control {
+  border: 1px solid #e0e0e0;
+  box-shadow: none;
+  transition: all 0.2s ease-in-out;
+}
+.form-control:focus {
+  border-color: #6c63ff;
+  box-shadow: 0 0 0 0.15rem rgba(108,99,255,0.2);
+}
+
+/* Botones */
+.btn-primary {
+  background-color: #6c63ff;
+  border: none;
+  font-weight: 500;
+}
+.btn-primary:hover {
+  background-color: #5a52e0;
+}
+.btn-outline-secondary {
+  border-color: #ccc;
+  color: #555;
+}
+.btn-outline-secondary:hover {
+  background-color: #f5f5f5;
+}
+
+/* Transición suave al entrar */
+.dueno-form-card {
+  animation: fadeInUp 0.6s ease;
+}
+@keyframes fadeInUp {
+  0% {opacity: 0; transform: translateY(30px);}
+  100% {opacity: 1; transform: translateY(0);}
+}
+
+/* -----------------------------------
+   FORMULARIO DE MASCOTA (estilo Pupassure)
+   ----------------------------------- */
+
+.mascota-form-card {
+  max-width: 900px;
+  background-color: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.mascota-form-image {
+  background-size: cover;
+  background-position: center;
+}
+
+/* Títulos */
+.mascota-form-card h2 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+
+/* Inputs y selects */
+.form-control,
+.form-select {
+  border: 1px solid #e0e0e0;
+  box-shadow: none;
+  transition: all 0.2s ease-in-out;
+}
+.form-control:focus,
+.form-select:focus {
+  border-color: #6c63ff;
+  box-shadow: 0 0 0 0.15rem rgba(108,99,255,0.2);
+}
+
+/* Botones */
+.btn-primary {
+  background-color: #6c63ff;
+  border: none;
+  font-weight: 500;
+}
+.btn-primary:hover {
+  background-color: #5a52e0;
+}
+.btn-outline-secondary {
+  border-color: #ccc;
+  color: #555;
+}
+.btn-outline-secondary:hover {
+  background-color: #f5f5f5;
+}
+
+/* Transición de entrada */
+.mascota-form-card {
+  animation: fadeInUp 0.6s ease;
+}
+@keyframes fadeInUp {
+  0% {opacity: 0; transform: translateY(30px);}
+  100% {opacity: 1; transform: translateY(0);}
+}
+
+/* ===========================
+   FORMULARIO DE VISITAS
+=========================== */
+
+.form-image-section {
+  background: linear-gradient(145deg, #2b2b40, #1e1e2f);
+  box-shadow: inset 8px 8px 15px #141424, inset -8px -8px 15px #2e2e44;
+  min-height: 100%;
+}
+
+form label {
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+form .form-control {
+  background-color: #1e1e2f;
+  border: 1px solid #2f2f48;
+  color: #ffffff;
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  transition: all 0.3s ease;
+  box-shadow: inset 2px 2px 4px #141424, inset -2px -2px 4px #2a2a40;
+}
+
+form .form-control:focus {
+  background-color: #24243a;
+  border-color: #6c63ff;
+  box-shadow: 0 0 8px rgba(108, 99, 255, 0.4);
+}
+
+form .btn {
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+form .btn-primary {
+  background-color: #6c63ff;
+  border: none;
+}
+
+form .btn-primary:hover {
+  background-color: #7b74ff;
+  box-shadow: 0 0 12px rgba(124, 113, 255, 0.5);
+}
+
+form .btn-outline-light:hover {
+  background-color: #6c63ff;
+  border-color: #6c63ff;
+}
+
+/* -----------------------------------
+   DETALLE DE MASCOTA (FICHA VETERINARIA)
+   ----------------------------------- */
+
+.mascota-detail-card {
+  max-width: 1000px;
+  background-color: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.mascota-detail-image {
+  background-color: #f8f9fa;
+  min-height: 400px;
+  text-align: center;
+}
+
+.mascota-detail-image img {
+  max-height: 350px;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+/* Información principal */
+.info-box {
+  font-size: 1rem;
+  color: #444;
+  display: flex;
+  align-items: center;
+  background-color: #fafafa;
+  padding: 10px 14px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  transition: all 0.2s ease-in-out;
+}
+.info-box:hover {
+  background-color: #f3f0ff;
+}
+
+/* Información del dueño */
+.owner-info {
+  background-color: #f9f9ff;
+  border-left: 4px solid #6c63ff;
+}
+
+/* Botones */
+.btn-primary {
+  background-color: #6c63ff;
+  border: none;
+  font-weight: 500;
+}
+.btn-primary:hover {
+  background-color: #5a52e0;
+}
+.btn-outline-secondary {
+  border-color: #ccc;
+  color: #555;
+}
+.btn-outline-secondary:hover {
+  background-color: #f5f5f5;
+}
+
+/* Animación de entrada */
+.mascota-detail-card {
+  animation: fadeInUp 0.6s ease;
+}
+@keyframes fadeInUp {
+  0% {opacity: 0; transform: translateY(30px);}
+  100% {opacity: 1; transform: translateY(0);}
+}
+
+/* ===========================
+   DETALLE DE VISITA
+=========================== */
+.detail-image-section {
+  background: linear-gradient(145deg, #2b2b40, #1e1e2f);
+  box-shadow: inset 8px 8px 15px #141424, inset -8px -8px 15px #2e2e44;
+  border-radius: 16px;
+}
+
+.detail-info p {
+  margin-bottom: 0.6rem;
+  font-size: 0.95rem;
+}
+
+.bg-dark-secondary {
+  background-color: #24243a;
+}
+
+.badge {
+  border-radius: 8px;
+}
+
+hr {
+  border-top: 1px solid #2e2e48;
+}
+
+.btn-warning {
+  background-color: #ffb84d;
+  border: none;
+}
+
+.btn-warning:hover {
+  background-color: #ffc86b;
+  box-shadow: 0 0 10px rgba(255, 200, 107, 0.4);
+}
+
+.btn-danger {
+  background-color: #ff5b5b;
+  border: none;
+}
+
+.btn-danger:hover {
+  background-color: #ff7878;
+  box-shadow: 0 0 10px rgba(255, 120, 120, 0.4);
+}

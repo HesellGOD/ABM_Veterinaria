@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Registrar Visita - VetCare{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="text-light fw-semibold">🩺 Registrar Visita Veterinaria</h2>
+    <a href="{% url 'visita_list' %}" class="btn btn-outline-light">
+      <i class="bi bi-arrow-left me-2"></i>Volver
+    </a>
+  </div>
+
+  <!-- Contenedor principal del formulario -->
+  <div class="card bg-dark border-0 shadow-lg rounded-4 overflow-hidden">
+    <div class="row g-0">
+
+      <!-- Bloque izquierdo: Imagen decorativa -->
+      <div class="col-md-5 form-image-section d-flex align-items-center justify-content-center">
+        <img src="{% static 'img/vetcare-visit.svg' %}" alt="Visita veterinaria" class="img-fluid p-4 opacity-75">
+      </div>
+
+      <!-- Bloque derecho: Formulario -->
+      <div class="col-md-7 p-5">
+        <form method="post" novalidate>
+          {% csrf_token %}
+
+          <!-- Fila 1 -->
+          <div class="row mb-4">
+            <div class="col-md-6">
+              <label for="id_mascota" class="form-label text-light">Mascota</label>
+              {{ form.mascota|add_class:"form-control" }}
+            </div>
+            <div class="col-md-6">
+              <label for="id_veterinario" class="form-label text-light">Veterinario</label>
+              {{ form.veterinario|add_class:"form-control" }}
+            </div>
+          </div>
+
+          <!-- Fila 2 -->
+          <div class="row mb-4">
+            <div class="col-md-6">
+              <label for="id_fecha" class="form-label text-light">Fecha y Hora</label>
+              {{ form.fecha|add_class:"form-control" }}
+            </div>
+            <div class="col-md-6">
+              <label for="id_estado" class="form-label text-light">Estado</label>
+              {{ form.estado|add_class:"form-control" }}
+            </div>
+          </div>
+
+          <!-- Fila 3 -->
+          <div class="mb-4">
+            <label for="id_motivo" class="form-label text-light">Motivo de la Visita</label>
+            {{ form.motivo|add_class:"form-control" }}
+          </div>
+
+          <div class="mb-4">
+            <label for="id_observaciones" class="form-label text-light">Observaciones</label>
+            {{ form.observaciones|add_class:"form-control" }}
+          </div>
+
+          <!-- Botones -->
+          <div class="d-flex justify-content-end mt-4">
+            <button type="reset" class="btn btn-outline-light me-2 px-4">
+              <i class="bi bi-x-circle me-2"></i>Cancelar
+            </button>
+            <button type="submit" class="btn btn-primary px-4">
+              <i class="bi bi-check-circle me-2"></i>Guardar Visita
+            </button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endblock %}

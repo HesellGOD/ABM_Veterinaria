@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Detalle de Visita - VetCare{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4">
+
+  <!-- Encabezado -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="text-light fw-semibold">🔍 Detalle de la Visita</h2>
+    <a href="{% url 'visita_list' %}" class="btn btn-outline-light">
+      <i class="bi bi-arrow-left me-2"></i>Volver a la lista
+    </a>
+  </div>
+
+  <!-- Contenedor principal -->
+  <div class="card bg-dark border-0 shadow-lg rounded-4 overflow-hidden p-4">
+    <div class="row g-4">
+
+      <!-- Imagen lateral -->
+      <div class="col-md-4 d-flex align-items-center justify-content-center detail-image-section">
+        <img src="{% static 'img/vetcare-detail.svg' %}" alt="Detalle de visita" class="img-fluid p-4 opacity-75">
+      </div>
+
+      <!-- Contenido principal -->
+      <div class="col-md-8">
+        <div class="detail-info text-light">
+
+          <!-- Información principal -->
+          <h4 class="fw-semibold mb-3 text-primary">Información General</h4>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <p><i class="bi bi-calendar3 text-secondary me-2"></i><strong>Fecha:</strong> {{ visita.fecha|date:"d/m/Y H:i" }}</p>
+              <p><i class="bi bi-person-fill text-secondary me-2"></i><strong>Dueño:</strong> {{ visita.mascota.dueno.nombre }}</p>
+              <p><i class="bi bi-heart-pulse text-secondary me-2"></i><strong>Mascota:</strong> {{ visita.mascota.nombre }}</p>
+            </div>
+            <div class="col-md-6">
+              <p><i class="bi bi-briefcase text-secondary me-2"></i><strong>Veterinario:</strong> {{ visita.veterinario }}</p>
+              <p><i class="bi bi-clipboard2-pulse text-secondary me-2"></i><strong>Estado:</strong>
+                {% if visita.estado == "pendiente" %}
+                <span class="badge bg-warning text-dark px-3 py-2">Pendiente</span>
+                {% elif visita.estado == "confirmada" %}
+                <span class="badge bg-info px-3 py-2">Confirmada</span>
+                {% elif visita.estado == "completada" %}
+                <span class="badge bg-success px-3 py-2">Completada</span>
+                {% else %}
+                <span class="badge bg-secondary px-3 py-2">Desconocido</span>
+                {% endif %}
+              </p>
+            </div>
+          </div>
+
+          <hr class="text-secondary">
+
+          <!-- Motivo -->
+          <h4 class="fw-semibold mt-4 text-primary">Motivo de la Visita</h4>
+          <p class="text-muted bg-dark-secondary p-3 rounded-4 shadow-sm">{{ visita.motivo }}</p>
+
+          <!-- Observaciones -->
+          <h4 class="fw-semibold mt-4 text-primary">Observaciones</h4>
+          {% if visita.observaciones %}
+            <p class="text-light bg-dark-secondary p-3 rounded-4 shadow-sm">{{ visita.observaciones }}</p>
+          {% else %}
+            <p class="text-muted fst-italic">Sin observaciones registradas.</p>
+          {% endif %}
+
+          <!-- Acciones -->
+          <div class="d-flex justify-content-end mt-4">
+            <a href="{% url 'visita_edit' visita.id %}" class="btn btn-warning me-2">
+              <i class="bi bi-pencil me-1"></i> Editar
+            </a>
+            <a href="{% url 'visita_delete' visita.id %}" class="btn btn-danger">
+              <i class="bi bi-trash me-1"></i> Eliminar
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

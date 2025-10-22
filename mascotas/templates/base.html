@@ -1,0 +1,240 @@
+{% load static %}
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{% block title %}VetCare Dashboard{% endblock %}</title>
+
+  <!-- Google Fonts: Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5 CSS (CDN) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Custom stylesheet -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+  <!-- Root layout: sidebar + main -->
+  <div class="app-root d-flex">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar p-3">
+      <!-- Logo -->
+      <div class="logo d-flex align-items-center mb-4">
+        <div class="brand-icon d-flex align-items-center justify-content-center">
+          <i class="bi bi-heart-pulse-fill"></i>
+        </div>
+        <div class="brand-text ms-3">
+          <h4 class="mb-0">VetCare</h4>
+          <small class="text-muted">Gestión Veterinaria</small>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <nav class="nav flex-column sidebar-nav">
+        <!-- Each item: icon + label. Mark active with .active -->
+        <a class="nav-link active d-flex align-items-center rounded-3 mb-2" href="#">
+          <i class="bi bi-house-door-fill me-3"></i> Inicio
+        </a>
+
+        <a class="nav-link d-flex align-items-center rounded-3 mb-2" href="#">
+          <i class="bi bi-paw me-3"></i> Mascotas
+        </a>
+
+        <a class="nav-link d-flex align-items-center rounded-3 mb-2" href="#">
+          <i class="bi bi-people-fill me-3"></i> Clientes
+        </a>
+
+        <a class="nav-link d-flex align-items-center rounded-3 mb-2" href="#">
+          <i class="bi bi-calendar-check-fill me-3"></i> Turnos
+        </a>
+
+        <a class="nav-link d-flex align-items-center rounded-3 mb-2" href="#">
+          <i class="bi bi-briefcase-fill me-3"></i> Servicios
+        </a>
+
+        <a class="nav-link d-flex align-items-center rounded-3 mb-2" href="#">
+          <i class="bi bi-cash-stack me-3"></i> Pagos
+        </a>
+
+        <a class="nav-link d-flex align-items-center rounded-3 mb-2" href="#">
+          <i class="bi bi-bar-chart-fill me-3"></i> Reportes
+        </a>
+
+        <a class="nav-link d-flex align-items-center rounded-3 mt-3" href="#">
+          <i class="bi bi-gear-fill me-3"></i> Configuración
+        </a>
+      </nav>
+
+      <!-- Sidebar footer / small text -->
+      <div class="sidebar-footer mt-auto pt-3">
+        <small class="text-muted">© VetCare</small>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content flex-grow-1">
+      <!-- Top navbar -->
+      <header class="topbar d-flex align-items-center justify-content-between px-4 py-3">
+        <div class="d-flex align-items-center gap-3">
+          <h6 class="mb-0">Hola, Administrador <span class="emoji">🐾</span></h6>
+        </div>
+
+        <div class="d-flex align-items-center gap-3">
+          <!-- Search -->
+          <div class="search-box d-flex align-items-center rounded-pill px-3">
+            <i class="bi bi-search me-2"></i>
+            <input type="search" class="form-control form-control-sm border-0 bg-transparent" placeholder="Buscar...">
+          </div>
+
+          <!-- Notifications (visual only) -->
+          <button class="btn btn-ghost position-relative" aria-label="Notificaciones">
+            <i class="bi bi-bell-fill fs-5"></i>
+            <span class="badge-notify">3</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Page container -->
+      <section class="page container-fluid p-4">
+        <!-- Banner / Hero -->
+        <div class="hero p-4 rounded-16 mb-4">
+          <div class="row align-items-center">
+            <div class="col-md-7">
+              <h1 class="hero-title mb-2">Panel de Gestión Veterinaria</h1>
+              <p class="hero-subtitle mb-3">Administra mascotas, clientes y turnos desde un solo lugar.</p>
+              <div class="d-flex gap-2">
+                <a href="#" class="btn btn-primary btn-lg">Nuevo Registro</a>
+                <a href="#" class="btn btn-outline-light btn-lg">Ver Reportes</a>
+              </div>
+            </div>
+
+            <div class="col-md-5 text-center">
+              <!-- Decorative SVG placeholder (abstract/3D style) -->
+              <div class="hero-illustration mx-auto">
+                <!-- Simple abstract SVG as placeholder -->
+                <svg width="220" height="140" viewBox="0 0 220 140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración abstracta">
+                  <defs>
+                    <linearGradient id="g1" x1="0" x2="1">
+                      <stop offset="0%" stop-color="#8A7BFF" stop-opacity="0.95"/>
+                      <stop offset="100%" stop-color="#6C63FF" stop-opacity="0.95"/>
+                    </linearGradient>
+                  </defs>
+                  <rect x="10" y="10" rx="20" ry="20" width="200" height="120" fill="url(#g1)" opacity="0.12"/>
+                  <circle cx="60" cy="60" r="28" fill="#A393FF" opacity="0.14"/>
+                  <circle cx="150" cy="70" r="36" fill="#6C63FF" opacity="0.18"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Statistic cards -->
+        <div class="row g-3 mb-4">
+          <div class="col-md-4">
+            <article class="stat-card p-3 rounded-12">
+              <div class="d-flex align-items-center justify-content-between">
+                <div>
+                  <h6 class="stat-title mb-1">Mascotas registradas</h6>
+                  <h2 class="stat-number mb-0">1,248</h2>
+                </div>
+                <div class="stat-icon rounded-3 d-flex align-items-center justify-content-center">
+                  <i class="bi bi-paw-fill fs-3"></i>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="col-md-4">
+            <article class="stat-card p-3 rounded-12">
+              <div class="d-flex align-items-center justify-content-between">
+                <div>
+                  <h6 class="stat-title mb-1">Turnos del día</h6>
+                  <h2 class="stat-number mb-0">18</h2>
+                </div>
+                <div class="stat-icon rounded-3 d-flex align-items-center justify-content-center">
+                  <i class="bi bi-calendar3-event fs-3"></i>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="col-md-4">
+            <article class="stat-card p-3 rounded-12">
+              <div class="d-flex align-items-center justify-content-between">
+                <div>
+                  <h6 class="stat-title mb-1">Ingresos del mes</h6>
+                  <h2 class="stat-number mb-0">$ 356,400</h2>
+                </div>
+                <div class="stat-icon rounded-3 d-flex align-items-center justify-content-center">
+                  <i class="bi bi-currency-dollar fs-3"></i>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- Lower section: upcoming appointments (table / timeline) -->
+        <div class="row">
+          <div class="col-12">
+            <section class="card-section p-3 rounded-12">
+              <div class="d-flex align-items-center justify-content-between mb-3">
+                <h5 class="mb-0">Próximos Turnos</h5>
+                <small class="text-muted">Mostrando los siguientes 10 turnos</small>
+              </div>
+
+              <!-- Table / timeline -->
+              <div class="table-responsive">
+                <table class="table table-dark table-borderless align-middle mb-0">
+                  <thead>
+                    <tr class="text-muted small">
+                      <th>Fecha</th>
+                      <th>Cliente</th>
+                      <th>Mascota</th>
+                      <th>Servicio</th>
+                      <th>Estado</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- Example rows (reemplazar por datos reales) -->
+                    <tr>
+                      <td>21 Oct 2025 - 09:00</td>
+                      <td>María López</td>
+                      <td>Rex</td>
+                      <td>Vacunación</td>
+                      <td><span class="badge state pending">Pendiente</span></td>
+                    </tr>
+                    <tr>
+                      <td>21 Oct 2025 - 10:30</td>
+                      <td>Carlos Pérez</td>
+                      <td>Luna</td>
+                      <td>Consulta general</td>
+                      <td><span class="badge state confirmed">Confirmado</span></td>
+                    </tr>
+                    <tr>
+                      <td>21 Oct 2025 - 11:00</td>
+                      <td>Ana Torres</td>
+                      <td>Pelusa</td>
+                      <td>Desparasitación</td>
+                      <td><span class="badge state completed">Completado</span></td>
+                    </tr>
+                    <!-- Más filas de ejemplo -->
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+        </div>
+
+      </section>
+    </main>
+  </div>
+
+  <!-- End of body. No JS funcional requerido -->
+</body>
+</html>

@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="mascota-detail-card mx-auto shadow-lg rounded-4 overflow-hidden">
+    <div class="row g-0">
+      <!-- Imagen lateral -->
+      <div class="col-md-5">
+        <div class="mascota-detail-image h-100 d-flex align-items-center justify-content-center bg-light">
+          {% if mascota.foto %}
+            <img src="{{ mascota.foto.url }}" alt="{{ mascota.nombre }}" class="img-fluid rounded-3 shadow-sm">
+          {% else %}
+            <img src="{% static 'img/pet-placeholder.png' %}" alt="Sin foto" class="img-fluid rounded-3 shadow-sm opacity-75">
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Detalles -->
+      <div class="col-md-7 bg-white p-5">
+        <h2 class="fw-bold text-primary mb-3">{{ mascota.nombre }}</h2>
+        <p class="text-muted mb-4">Ficha veterinaria completa de la mascota</p>
+
+        <!-- Datos principales -->
+        <div class="row mb-4">
+          <div class="col-sm-6 mb-3">
+            <div class="info-box">
+              <i class="bi bi-heart-pulse text-primary me-2"></i>
+              <span class="fw-semibold">Especie:</span> {{ mascota.especie }}
+            </div>
+          </div>
+          <div class="col-sm-6 mb-3">
+            <div class="info-box">
+              <i class="bi bi-paw text-primary me-2"></i>
+              <span class="fw-semibold">Raza:</span> {{ mascota.raza }}
+            </div>
+          </div>
+          <div class="col-sm-6 mb-3">
+            <div class="info-box">
+              <i class="bi bi-calendar-heart text-primary me-2"></i>
+              <span class="fw-semibold">Edad:</span> {{ mascota.edad }} años
+            </div>
+          </div>
+          <div class="col-sm-6 mb-3">
+            <div class="info-box">
+              <i class="bi bi-person-circle text-primary me-2"></i>
+              <span class="fw-semibold">Dueño:</span> {{ mascota.dueno.nombre }}
+            </div>
+          </div>
+        </div>
+
+        <!-- Contacto del dueño -->
+        <div class="owner-info p-3 rounded-3 bg-light mb-4">
+          <h6 class="fw-bold text-secondary mb-2">Contacto del dueño</h6>
+          <p class="mb-1"><i class="bi bi-telephone me-2 text-primary"></i>{{ mascota.dueno.telefono }}</p>
+          <p class="mb-1"><i class="bi bi-envelope me-2 text-primary"></i>{{ mascota.dueno.email }}</p>
+          <p class="mb-0"><i class="bi bi-geo-alt me-2 text-primary"></i>{{ mascota.dueno.direccion }}</p>
+        </div>
+
+        <!-- Botones -->
+        <div class="d-flex justify-content-end mt-4">
+          <a href="{% url 'mascota_list' %}" class="btn btn-outline-secondary rounded-pill px-4 me-2">
+            <i class="bi bi-arrow-left"></i> Volver
+          </a>
+          <a href="{% url 'mascota_edit' mascota.id %}" class="btn btn-primary rounded-pill px-4">
+            <i class="bi bi-pencil"></i> Editar
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

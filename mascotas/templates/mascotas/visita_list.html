@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Visitas - VetCare{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4">
+
+  <!-- Encabezado de la sección -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h2 class="text-light fw-semibold">📋 Lista de Visitas</h2>
+      <p class="text-secondary">Consulta, edita o agrega nuevas visitas veterinarias.</p>
+    </div>
+    <a href="{% url 'visita_create' %}" class="btn btn-primary shadow-sm">
+      <i class="bi bi-plus-circle me-2"></i> Nueva Visita
+    </a>
+  </div>
+
+  <!-- Tabla de visitas -->
+  <div class="card bg-dark border-0 shadow-lg rounded-4 p-3">
+    <div class="table-responsive">
+      <table class="table align-middle text-light">
+        <thead class="table-dark border-0">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Mascota</th>
+            <th scope="col">Dueño</th>
+            <th scope="col">Motivo</th>
+            <th scope="col">Veterinario</th>
+            <th scope="col">Estado</th>
+            <th scope="col" class="text-center">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for visita in visitas %}
+          <tr class="visita-row">
+            <td>{{ forloop.counter }}</td>
+            <td>{{ visita.fecha|date:"d/m/Y H:i" }}</td>
+            <td>{{ visita.mascota.nombre }}</td>
+            <td>{{ visita.mascota.dueno.nombre }}</td>
+            <td>{{ visita.motivo }}</td>
+            <td>{{ visita.veterinario }}</td>
+            <td>
+              {% if visita.estado == "pendiente" %}
+              <span class="badge bg-warning text-dark px-3 py-2">Pendiente</span>
+              {% elif visita.estado == "confirmada" %}
+              <span class="badge bg-info px-3 py-2">Confirmada</span>
+              {% elif visita.estado == "completada" %}
+              <span class="badge bg-success px-3 py-2">Completada</span>
+              {% else %}
+              <span class="badge bg-secondary px-3 py-2">Desconocido</span>
+              {% endif %}
+            </td>
+            <td class="text-center">
+              <a href="{% url 'visita_detail' visita.id %}" class="btn btn-outline-info btn-sm me-1">
+                <i class="bi bi-eye"></i>
+              </a>
+              <a href="{% url 'visita_edit' visita.id %}" class="btn btn-outline-warning btn-sm me-1">
+                <i class="bi bi-pencil"></i>
+              </a>
+              <a href="{% url 'visita_delete' visita.id %}" class="btn btn-outline-danger btn-sm">
+                <i class="bi bi-trash"></i>
+              </a>
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="8" class="text-center text-muted py-4">No hay visitas registradas.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+{% endblock %}
