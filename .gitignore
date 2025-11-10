@@ -1,4 +1,4 @@
-# Entornos virtuales
+﻿# Entornos virtuales
 venv/
 env/
 
@@ -16,6 +16,11 @@ Thumbs.db
 db.sqlite3
 media/
 staticfiles/
+
+# Archivos de distribución o demo
+VetCareDemo/
+dist/
+build/
 
 # Configuración local
 .env
