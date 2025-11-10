@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Ficha de Mascota - {{ mascota.nombre }}</title>
+    <style>
+        @page {
+            size: letter;
+            margin: 2cm;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.4;
+            color: #333;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            color: #4a5568;
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .section h2 {
+            color: #2d3748;
+            font-size: 18px;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+        .info-grid {
+            display: table;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .info-row {
+            display: table-row;
+        }
+        .info-label {
+            display: table-cell;
+            font-weight: bold;
+            width: 30%;
+            padding: 5px;
+            color: #4a5568;
+        }
+        .info-value {
+            display: table-cell;
+            padding: 5px;
+        }
+        table.vacunas {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        table.vacunas th, table.vacunas td {
+            border: 1px solid #cbd5e0;
+            padding: 8px;
+            text-align: left;
+        }
+        table.vacunas th {
+            background-color: #f7fafc;
+            font-weight: bold;
+        }
+        .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            font-size: 10px;
+            color: #718096;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Carnet de vacunación</h1>
+        <p>VetCare - Sistema de Gestión Veterinaria</p>
+    </div>
+
+    <div class="section">
+        <h2>Datos de la mascota</h2>
+        <div class="info-grid">
+            <div class="info-row">
+                <div class="info-label">Nombre:</div>
+                <div class="info-value">{{ mascota.nombre }}</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Especie:</div>
+                <div class="info-value">{{ mascota.especie }}</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Raza:</div>
+                <div class="info-value">{{ mascota.raza }}</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Edad:</div>
+                <div class="info-value">{{ mascota.edad }} años</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Peso:</div>
+                <div class="info-value">{{ mascota.peso }} kg</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Esterilizado:</div>
+                <div class="info-value">{% if mascota.esterilizado %}Sí{% else %}No{% endif %}</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Datos del Propietario</h2>
+        <div class="info-grid">
+            <div class="info-row">
+                <div class="info-label">Nombre:</div>
+                <div class="info-value">{{ mascota.dueño.nombre }}</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Dirección:</div>
+                <div class="info-value">{{ mascota.dueño.direccion }}</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Teléfono:</div>
+                <div class="info-value">{{ mascota.dueño.telefono }}</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Email:</div>
+                <div class="info-value">{{ mascota.dueño.email }}</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Registro de vacunación</h2>
+        <table class="vacunas">
+            <thead>
+                <tr>
+                    <th>Peso (Kg)</th>
+                    <th>Fecha</th>
+                    <th>Vacuna</th>
+                    <th>Firma y sello</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for visita in mascota.visitas.all %}
+                <tr>
+                    <td>{{ visita.peso }}</td>
+                    <td>{{ visita.fecha }}</td>
+                    <td>{{ visita.motivo }}</td>
+                    <td></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="footer">
+        Documento generado por VetCare © {{ now.year }}
+    </div>
+</body>
+</html>

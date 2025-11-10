@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Eliminar Dueño - VetCare{% endblock %}
+
+{% block content %}
+<div class="modal fade show" id="deleteDueñoModal" tabindex="-1" aria-labelledby="deleteDueñoLabel" aria-modal="true" style="display:block; background: rgba(0,0,0,0.6);">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content bg-dark text-light rounded-4 border-0 shadow-lg">
+      <div class="modal-header border-0">
+        <h5 class="modal-title text-danger"><i class="bi bi-person-x-fill me-2"></i>Eliminar Cliente</h5>
+      </div>
+      <div class="modal-body">
+        <p>¿Deseas eliminar al cliente <strong>{{ dueño.nombre }}</strong>?</p>
+        <p class="text-muted small">Esta acción eliminará también sus registros relacionados.</p>
+      </div>
+      <div class="modal-footer border-0">
+        <a href="{% url 'dueño_list' %}" class="btn btn-outline-secondary">Cancelar</a>
+        <form method="post" class="d-inline">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-danger">Eliminar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

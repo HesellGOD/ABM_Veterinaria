@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Panel - VetCare{% endblock %}
+
+{% block content %}
+<!-- HERO / BANNER -->
+<section class="hero card-ghost">
+  <div class="hero-left">
+    <h1 class="hero-title">Panel de Gestión Veterinaria</h1>
+    <p class="hero-sub">Administra mascotas, clientes y turnos desde un solo lugar.</p>
+    <div class="hero-actions">
+      <a href="{% url 'mascota_create' %}" class="btn btn-primary btn-lg me-2">Nuevo Registro</a>
+      <a href="{% url 'mascota_list' %}" class="btn btn-outline-light btn-lg">Ver Registros</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-illustration" role="img" aria-label="Ilustración decorativa"></div>
+  </div>
+</section>
+
+<!-- STAT CARDS -->
+<section class="stats-grid mt-4">
+  <div class="row g-3">
+    <div class="col-md-6">
+      <div class="stat-card card-purple">
+            <div class="stat-left">
+              <div class="stat-emoji">🐶</div>
+            </div>
+        <div class="stat-right">
+          <div class="stat-number">{{ total_mascotas }}</div>
+          <div class="stat-label">Mascotas registradas</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="stat-card card-blue">
+        <div class="stat-left">
+          <div class="stat-emoji">📆</div>
+        </div>
+        <div class="stat-right">
+          <div class="stat-number">{{ turnos_pendientes }}</div>
+          <div class="stat-label">Turnos pendientes</div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</section>
+
+<!-- TABLE / TIMELINE -->
+<section class="mt-4">
+  <div class="card bg-dark shadow-lg p-3">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h5 class="mb-0 text-white">Próximos Turnos</h5>
+      <small class="text-light opacity-75">Actualizado hace 10 minutos</small>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-dark table-borderless align-middle">
+        <thead>
+          <tr class="text-muted small">
+            <th>Fecha</th>
+            <th>Cliente</th>
+            <th>Mascota</th>
+            <th>Servicio</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for visita in proximos_turnos %}
+          <tr>
+            <td>{{ visita.fecha|date:"d/m/Y" }} · {{ visita.fecha|time:"H:i" }}</td>
+            <td>{{ visita.mascota.dueño.nombre }}</td>
+            <td>{{ visita.mascota.nombre }} ({{ visita.mascota.especie }})</td>
+            <td>{{ visita.motivo }}</td>
+            <td>
+              {% if visita.estado == "pendiente" %}
+              <span class="badge bg-warning text-dark">Pendiente</span>
+              {% elif visita.estado == "confirmada" %}
+              <span class="badge bg-success">Confirmada</span>
+              {% elif visita.estado == "completada" %}
+              <span class="badge bg-secondary">Completada</span>
+              {% else %}
+              <span class="badge bg-secondary">{{ visita.estado|title }}</span>
+              {% endif %}
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="5" class="text-center text-muted">No hay próximos turnos programados.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mt-3 small text-light opacity-75">
+      Puedes ver más turnos en la sección <a href="{% url 'visita_list' %}" class="text-primary">Turnos</a>.
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="mt-4 text-center small text-light opacity-75">
+  © {{ now.year }} VetCare · Hecho con ❤️ · Proyecto demo
+</footer>
+{% endblock %}

@@ -19,8 +19,8 @@ Permite administrar dueños, mascotas y visitas médicas, con soporte para API R
 
 ```bash
 # Clonar el repositorio
-git clone https://github.com/HesellGOD/veterinaria_django_crud.git
-cd veterinaria_django_crud
+git clone https://github.com/HesellGOD/ABM_Veterinaria.git
+cd ABM_Veterinaria
 
 # Crear entorno virtual
 python -m venv venv
@@ -47,14 +47,6 @@ Recurso	    URL	Métodos
 Dueños	    /api/dueños/	GET, POST, PUT, DELETE
 Mascotas	/api/mascotas/	GET, POST, PUT, DELETE
 Visitas     /api/visitas/   GET, POST, PUT, DELETE
-
-📚 Próximos pasos
-
-Integrar almacenamiento de imágenes en AWS S3
-
-Migrar base de datos a AWS RDS
-
-Añadir módulo de análisis de texto con IA (Amazon Comprehend)
 
 👨‍💻 Autor
 
