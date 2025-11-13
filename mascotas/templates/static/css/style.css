@@ -1,10 +1,9 @@
 /* style.css
-   VetCare - estilo base (neumórfico oscuro, paleta violeta)
-   Asegurate de colocar este archivo en static/css/style.css y servir static en Django.
+    VetCare - estilo base (neumórfico oscuro, paleta violeta)
 */
 
 /* -------------------------
-   Variables de color y base
+    Variables de color y base
    ------------------------- */
 :root{
   --bg-dark: #121212;            /* Fondo general */
@@ -108,7 +107,7 @@ html,body{
     }
 }
 /* -------------------------
-   SIDEBAR
+    SIDEBAR
    ------------------------- */
 .sidebar{
   width: 260px;
@@ -171,7 +170,7 @@ html,body{
 .sidebar-footer{ margin-top:auto; color:var(--muted); padding-bottom:18px; }
 
 /* -------------------------
-   TOPBAR
+    TOPBAR
    ------------------------- */
 .topbar{
   border-bottom: 1px solid rgba(255,255,255,0.03);
@@ -210,7 +209,7 @@ html,body{
 }
 
 /* -------------------------
-   PAGE / HERO
+    PAGE / HERO
    ------------------------- */
 .page{ max-width: 1200px; margin-left: auto; margin-right: auto; }
 
@@ -239,7 +238,7 @@ html,body{
 .btn-outline-light{ border-color: rgba(255,255,255,0.08); color:var(--white); }
 
 /* -------------------------
-   STAT CARDS
+    STAT CARDS
    ------------------------- */
 .stat-card{
   min-height: 96px;
@@ -313,7 +312,7 @@ html,body{
 .stat-number{ font-size:24px; font-weight:700; }
 
 /* -------------------------
-   TABLE / TIMELINE
+    TABLE / TIMELINE
    ------------------------- */
 .card-section{
   background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));
@@ -354,26 +353,21 @@ html,body{
 }
 
 /* -------------------------
-   Responsive tweaks
+    Responsive tweaks
    ------------------------- */
 @media (max-width: 992px){
   .sidebar{ width: 220px; }
   .hero-title{ font-size:24px; }
 }
 
-@media (max-width: 768px){
-  .sidebar{ display:none; } /* para tablet/phones ocultamos sidebar (después se puede implementar comportamiento responsive) */
-  .topbar{ padding-left:14px; padding-right:14px; }
-  .page{ padding: 12px; }
-  .search-box{ min-width: 120px; }
-}
+/* Eliminadas las viejas reglas de responsive - ver sección SIDEBAR RESPONSIVE (MOBILE) abajo */
 
 /* Utilities */
 .rounded-12{ border-radius: 12px; }
 .rounded-16{ border-radius: 16px; }
 
 /* -----------------------------------
-   DUEÑO LIST (tabla de clientes)
+    DUEÑO LIST (tabla de clientes)
    ----------------------------------- */
 
 /* Página títulos */
@@ -419,7 +413,7 @@ html,body{
 }
 
 /* -----------------------------------
-   LISTA DE MASCOTAS (CRUD TABLA LIMPIA)
+    LISTA DE MASCOTAS (CRUD TABLA LIMPIA)
    ----------------------------------- */
 
 .table {
@@ -474,7 +468,7 @@ html,body{
 }
 
 /* ===========================
-   SECCIÓN: LISTA DE VISITAS
+    SECCIÓN: LISTA DE VISITAS
 =========================== */
 .table {
   border-collapse: separate;
@@ -520,7 +514,7 @@ html,body{
 }
 
 /* -----------------------------------
-   FORMULARIO DE DUEÑO (estilo Pupassure)
+    FORMULARIO DE DUEÑO (estilo Pupassure)
    ----------------------------------- */
 
 .dueno-form-card {
@@ -555,7 +549,7 @@ html,body{
 }
 
 /* -------------------------
-   LOGIN (estilo oscuro)
+    LOGIN (estilo oscuro)
    ------------------------- */
 .login-page {
   background: var(--bg-dark);
@@ -713,7 +707,7 @@ html,body{
 }
 
 /* -----------------------------------
-   FORMULARIO DE MASCOTA (estilo Pupassure)
+    FORMULARIO DE MASCOTA (estilo Pupassure)
    ----------------------------------- */
 
 .pupassure-form .form-label {
@@ -765,29 +759,8 @@ input[type="radio"]:checked + .btn-toggle {
   border-color: #f48fb1;
 }
 
-/* Foto */
-.upload-photo {
-  border: 2px dashed #ddd;
-  background-color: #f9fafb;
-  transition: all 0.3s ease;
-}
-.upload-photo:hover {
-  background-color: #fef3f8;
-  border-color: #f48fb1;
-}
-
-/* Ajustes responsivos */
-@media (max-width: 768px) {
-  .mascota-form-card {
-    border-radius: 0;
-  }
-  .mascota-form-image {
-    display: none;
-  }
-}
-
 /* ===========================
-   FORMULARIO DE VISITAS
+  FORMULARIO DE VISITAS
 =========================== */
 
 .form-image-section {
@@ -868,7 +841,7 @@ form .btn-outline-light:hover {
 }
 
 /* -----------------------------------
-   DETALLE DE MASCOTA (FICHA VETERINARIA)
+    DETALLE DE MASCOTA (FICHA VETERINARIA)
    ----------------------------------- */
 
 .mascota-detail-card {
@@ -939,7 +912,7 @@ form .btn-outline-light:hover {
 }
 
 /* ===========================
-   DETALLE DE VISITA
+    DETALLE DE VISITA
 =========================== */
 .detail-image-section {
   background: linear-gradient(145deg, #2b2b40, #1e1e2f);
@@ -985,9 +958,9 @@ hr {
 }
 
 /* --------------------------------------------------
-   Overrides para formularios 'pupassure-form'
-   Asegura fondo blanco y texto negro para inputs usados
-   en mascota_form, dueño_form y visita_form
+    Overrides para formularios 'pupassure-form'
+    Asegura fondo blanco y texto negro para inputs usados
+    en mascota_form, dueño_form y visita_form
    -------------------------------------------------- */
 .pupassure-form .form-control,
 .pupassure-form .form-select,
@@ -1015,3 +988,123 @@ hr {
   background-color: #fff !important;
   color: #333 !important;
 }
+
+/* -------------------------
+    SIDEBAR COLLAPSED STATE
+   ------------------------- */
+/* Transición para suavizar el cambio de ancho */
+.sidebar{ transition: width 220ms ease, padding 220ms ease; }
+
+.app-root.sidebar-collapsed .sidebar{
+  width: 88px; /* ancho reducido para íconos */
+  padding-left: 12px; padding-right:12px;
+}
+
+/* Ocultar marca de texto cuando esté colapsado */
+.app-root.sidebar-collapsed .brand-text{ display:none; }
+.app-root.sidebar-collapsed .brand-text h4{ display:none; }
+.app-root.sidebar-collapsed .brand-text small{ display:none; }
+
+/* Centrar los iconos y ocultar solo el texto de los enlaces */
+.app-root.sidebar-collapsed .sidebar-nav .nav-link{ justify-content:center; padding:12px; }
+.app-root.sidebar-collapsed .sidebar-nav .nav-link i{ margin-right:0; }
+.app-root.sidebar-collapsed .sidebar-nav .nav-link .nav-text{ display:none; }
+
+/* Asegurar que los elementos activos sigan viéndose bien en modo colapsado */
+.app-root.sidebar-collapsed .sidebar-nav .nav-link.active{ padding-left:0; padding-right:0; }
+
+/* Hacer que el botón del logo tenga cursor puntero y apariencia limpia */
+.brand-icon.btn{ background: linear-gradient(145deg, rgba(108,99,255,0.14), rgba(163,147,255,0.08)); border-radius:12px; color:var(--white); border:none; cursor:pointer; }
+.brand-icon.btn:focus{ outline: none; box-shadow: 0 0 0 3px rgba(108,99,255,0.12); }
+
+/* -------------------------
+    SIDEBAR RESPONSIVE (MOBILE)
+   ------------------------- */
+
+/* Overlay para móvil */
+.sidebar-overlay{
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  opacity: 0;
+  transition: opacity 220ms ease;
+  pointer-events: none;
+}
+
+.app-root.sidebar-mobile-open .sidebar-overlay{
+  display: block;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* En dispositivos móviles: sidebar como drawer */
+@media (max-width: 991px){
+  .sidebar{
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 260px;
+    z-index: 1000;
+    transform: translateX(-100%);
+    transition: transform 220ms ease;
+  }
+
+  .app-root.sidebar-mobile-open .sidebar{
+    transform: translateX(0);
+  }
+
+  .main-content{
+    flex: 1;
+    width: 100%;
+  }
+
+  /* Ocultar el botón de colapsar en móvil (usar hamburguesa) */
+  .sidebar .brand-icon{ display: none !important; }
+
+  /* Mostrar marca de texto en móvil drawer */
+  .sidebar .brand-text{ display: block; margin-left: 0; margin-top: 12px; }
+
+  /* Botón hamburguesa visible en móvil */
+  #mobileMenuToggle{ display: inline-flex !important; }
+
+  /* Botón retroceso visible en móvil */
+  #backButton{ display: inline-flex; }
+}
+
+/* En desktop: sidebar tradicional */
+@media (min-width: 992px){
+  .sidebar{
+    position: relative;
+    transform: translateX(0);
+  }
+
+  .sidebar-overlay{ display: none !important; }
+
+  #mobileMenuToggle{ display: none !important; }
+
+  /* Mostrar marca de texto en desktop */
+  .app-root:not(.sidebar-collapsed) .brand-text{
+    display: block;
+  }
+}
+
+/* Responsive: ajustes generales */
+@media (max-width: 768px){
+  .page{ padding: 12px; }
+  .search-box{ min-width: 120px; }
+  .topbar{ padding-left:12px; padding-right:12px; }
+}
+
+@media (max-width: 992px){
+  .sidebar{ display:flex; } /* Cambiar display:none a flex para drawer */
+  .topbar{ padding-left:14px; padding-right:14px; }
+  .page{ padding: 12px; }
+  .search-box{ min-width: 100px; }
+}
+

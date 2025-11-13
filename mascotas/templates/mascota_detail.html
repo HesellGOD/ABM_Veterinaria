@@ -36,8 +36,14 @@
         </div>
         <div class="col-md-6">
           <div class="form-group">
-            <label class="form-label text-muted small">Fecha de nacimiento:</label>
-            <div class="form-control-plaintext border-bottom">{{ mascota.edad }} años</div>
+            <label class="form-label text-muted small">Fecha de Nacimiento:</label>
+            <div class="form-control-plaintext border-bottom">{{ mascota.fecha_nacimiento }}</div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="form-label text-muted small">Edad:</label>
+            <div class="form-control-plaintext border-bottom">{{ mascota.get_edad }}</div>
           </div>
         </div>
         <div class="col-12">

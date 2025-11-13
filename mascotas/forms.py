@@ -8,9 +8,19 @@ class DueñoForm(forms.ModelForm):
 
 
 class MascotaForm(forms.ModelForm):
+    # Aseguramos que la fecha use formato ISO para que el widget type="date" muestre el valor al editar
+    fecha_nacimiento = forms.DateField(
+        widget=forms.DateInput(format='%Y-%m-%d', attrs={
+            'class': 'form-control rounded-3 py-2',
+            'type': 'date'
+        }),
+        input_formats=['%Y-%m-%d'],
+        label='Fecha de Nacimiento'
+    )
+
     class Meta:
         model = Mascota
-        fields = ['nombre', 'especie', 'raza', 'edad', 'peso', 'esterilizado', 'dueño']
+        fields = ['nombre', 'especie', 'raza', 'fecha_nacimiento', 'peso', 'esterilizado', 'dueño']
         widgets = {
             'nombre': forms.TextInput(attrs={
                 'class': 'form-control rounded-3 py-2',
@@ -23,10 +33,6 @@ class MascotaForm(forms.ModelForm):
             'raza': forms.TextInput(attrs={
                 'class': 'form-control rounded-3 py-2',
                 'placeholder': 'Ej: Labrador'
-            }),
-            'edad': forms.NumberInput(attrs={
-                'class': 'form-control rounded-3 py-2',
-                'placeholder': 'Ej: 2'
             }),
             'peso': forms.NumberInput(attrs={
                 'class': 'form-control rounded-3 py-2',

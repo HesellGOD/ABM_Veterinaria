@@ -1,55 +1,75 @@
-# 🐾 Veterinaria Django CRUD
+# 🐾 VetCare – Sistema de Gestión Veterinaria
+**VetCare** es una aplicación web desarrollada con **Python + Django + Bootstrap 5**, diseñada para administrar **dueños, mascotas y visitas veterinarias** desde una interfaz moderna, profesional y completamente responsive.
 
-Sistema web de gestión veterinaria desarrollado con **Python + Django + Django REST Framework**.
+## 🎥 Demo
+> 📁 La carpeta VetcareDemo/ contiene imágenes del funcionamiento del sistema.
 
-Permite administrar dueños, mascotas y visitas médicas, con soporte para API REST.
+## 🚀 Características principales
+- **CRUD completo** de Dueños, Mascotas y Visitas.
+- **Interfaz moderna** con diseño oscuro tipo *Unity UI*.
+- Formularios con estilo **Pupassure** (imagen lateral + campos limpios).
+- **API REST** integrada con *Django REST Framework*.
+- Sistema escalable preparado para módulos futuros (por ejemplo, *Servicios* o *Pagos*).
+- **Base de datos SQLite** por defecto (fácil de migrar a PostgreSQL o MySQL).
 
----
+## 🧩 Estructura del proyecto
+ABM_Veterinaria/
+│
+├── mascotas/ # App principal (modelos, vistas, urls, forms)
+│ ├── templates/ # Templates HTML
+│ ├── static/css/ # Archivos CSS personalizados
+│ ├── views.py # Lógica del CRUD y API
+│ ├── models.py # Estructura de datos (Dueño, Mascota, Visita)
+│ ├── forms.py # Formularios personalizados
+│ └── serializers.py # API REST (Django REST Framework)
+│
+├── veterinaria/ # Configuración principal de Django
+│ └── urls.py # Rutas globales del proyecto
+│
+├── VetcareDemo/ # 🎥 Carpeta con demo visual
+│
+├── manage.py
+└── requirements.txt
 
-## 🚀 Tecnologías
-- Python 3.10+
-- Django 5.x
-- Django REST Framework
-- SQLite (local) / PostgreSQL (para producción)
-- HTML5 / CSS3 (interfaz básica)
-
----
-
-## 📦 Instalación local
-
-```bash
-# Clonar el repositorio
+## ⚙️ Instalación y ejecución
+1. **Clonar el repositorio**
+En cmd:
 git clone https://github.com/HesellGOD/ABM_Veterinaria.git
 cd ABM_Veterinaria
 
-# Crear entorno virtual
+2. **Crear y activar el entorno virtual**
+En cmd:
 python -m venv venv
-source venv/bin/activate  # Linux/Mac
-venv\Scripts\activate     # Windows
+source venv/Scripts/activate     # En Windows
+source venv/bin/activate         # En Linux/Mac
 
-# Instalar dependencias
+3. **Instalar dependencias**
+En cmd:
 pip install -r requirements.txt
 
-# Migrar base de datos
+4. **Ejecutar migraciones**
+en cmd:
 python manage.py migrate
 
-# Crear superusuario
-python manage.py createsuperuser
-
-# Iniciar servidor
+5. **Iniciar el servidor**
 python manage.py runserver
 
-Luego ingresá a http://127.0.0.1:8000/admin/
+6. **Abrir en el navegador**
+http://127.0.0.1:8000/
 
-🧩 Endpoints API REST
+🧠 Stack Tecnológico
+Backend: Python, Django
+Frontend: HTML5, CSS3, Bootstrap 5
+API: Django REST Framework
+Base de datos: SQLite (por defecto)
+Control de versiones: Git / GitHub
 
-Recurso	    URL	Métodos
-Dueños	    /api/dueños/	GET, POST, PUT, DELETE
-Mascotas	/api/mascotas/	GET, POST, PUT, DELETE
-Visitas     /api/visitas/   GET, POST, PUT, DELETE
+🧑‍💻 Desarrollador
+👨‍💻 Hesel Eduardo Cornejo
+📍 Los Cerrillos, Córdoba – Argentina
+📧 cornejoheselleduardo@gmail.com
+🌐 LinkedIn
+💻 GitHub
 
-👨‍💻 Autor
-
-[Cornejo Hesel Eduardo]
-Desarrollador Python/Django | Cloud AWS | AI Integrations
-LinkedIn | GitHub
+🐍 Próximas mejoras
+ Módulo Servicios (vacunación, esterilización, peluquería, etc.)

@@ -33,7 +33,7 @@
     <table class="table table-dark table-hover align-middle mb-0">
       <thead class="text-muted small">
         <tr>
-          <th scope="col" class="text-secondary fw-semibold">#</th>
+          <th scope="col" class="text-secondary fw-semibold">ID</th>
           <th scope="col" class="text-secondary fw-semibold">Nombre</th>
           <th scope="col" class="text-secondary fw-semibold">Dueño</th>
           <th scope="col" class="text-secondary fw-semibold">Especie</th>
@@ -52,7 +52,7 @@
           <td>{{ mascota.dueño.nombre }}</td>
           <td>{{ mascota.especie }}</td>
           <td>{{ mascota.raza }}</td>
-          <td>{{ mascota.edad }} años</td>
+          <td>{{ mascota.get_edad }}</td>
           <td>{{ mascota.peso }} kg</td>
           <td>{% if mascota.esterilizado %}Sí{% else %}No{% endif %}</td>
           <td class="text-center">

@@ -29,14 +29,14 @@
           <div class="form-control-plaintext border-bottom">{{ visita.fecha|date:"d/m/Y" }}</div>
         </div>
         <div class="col-md-6">
-          <label class="form-label text-muted small">Estado:</label>
+          <label class="form-label text-muted small">Estado de Pago:</label>
           <div class="form-control-plaintext border-bottom">
             {% if visita.estado == "pendiente" %}
-              <span class="badge bg-warning text-dark">Pendiente</span>
-            {% elif visita.estado == "confirmada" %}
-              <span class="badge bg-info">Confirmada</span>
-            {% elif visita.estado == "completada" %}
-              <span class="badge bg-success">Completada</span>
+              <span class="badge bg-warning text-dark">Pendiente de pago</span>
+            {% elif visita.estado == "pago" %}
+              <span class="badge bg-success">Pagado</span>
+            {% elif visita.estado == "cancelado" %}
+              <span class="badge bg-danger">Cancelado</span>
             {% else %}
               <span class="badge bg-secondary">Desconocido</span>
             {% endif %}
